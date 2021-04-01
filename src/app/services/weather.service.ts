@@ -59,4 +59,28 @@ export class WeatherService {
         })
        return dataSubject;
     }
+    getCurrentWind(city:string)
+    {
+      const dataSubject=new Subject<number>()
+      this.http.get().subscribe(
+        (data:number)=>
+        {
+          dataSubject.next(data);
+        })
+        return dataSubject;
+    }
+    getForecast(city:string)
+    {
+      const dataSubject = new Subject<Array<any>>();
+      this.http.get().subscribe(
+        (data:any)=>
+        {
+          dataSubject.next(data);
+        },
+        (error:any)=>
+        {
+         console.log(error);
+        })
+        return dataSubject;
+    }
 }

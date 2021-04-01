@@ -39,11 +39,11 @@ export class DetailsComponent implements OnInit,OnDestroy
   day5Temp: number=0;
 
 
-  sub1: Subscription;
-  sub2: Subscription;
-  sub3: Subscription;
-  sub4: Subscription;
-  sub5: Subscription;
+  sub1: Subscription=new Subscription();
+  sub2: Subscription=new Subscription();
+  sub3: Subscription=new Subscription();
+  sub4: Subscription=new Subscription();
+  sub5: Subscription=new Subscription();
   constructor(private activeRouter: ActivatedRoute,private weatherService:WeatherService) { }
 
   ngOnInit(): void
@@ -56,7 +56,7 @@ export class DetailsComponent implements OnInit,OnDestroy
       {
       this.city=this.activeRouter.params.city;
       this.sub1=this.weatherService.getWeatherState(this.city).subscribe((state:any)=>this.state=state);
-      this.sub2=this.weatherService.getCurrentTemp().subscribe((temp:number)=>this.temp=temp);
+      this.sub2=this.weatherService.getCurrentTemp(this.city).subscribe((temp:number)=>this.temp=temp);
       this.sub3 = this.weatherService.getCurrentHum(this.city).subscribe((humidity:number) => this.hum = humidity);
       this.sub4 = this.weatherService.getCurrentWind(this.city).subscribe((windspeed:number) => this.wind = windspeed);
       this.sub5 = this.weatherService.getForecast(this.city).subscribe(
@@ -73,13 +73,16 @@ export class DetailsComponent implements OnInit,OnDestroy
 
   }
 
-  ngOnDestroy()
+  ngOnDestroy():void
 {
-  this.sub1.unsubscribe();
+
+  this.sub1
+  this:sub1.unsubscribe();
   this.sub2.unsubscribe();
   this.sub3.unsubscribe();
   this.sub4.unsubscribe();
   this.sub5.unsubscribe();
+
 
 }
   }
