@@ -2,13 +2,14 @@ import { Component, OnInit,OnDestroy} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { WeatherService } from '../services/weather.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit,OnDestroy
+export class DetailsComponent implements OnInit
 {
   city: string=''
   state: string=''
@@ -54,7 +55,7 @@ export class DetailsComponent implements OnInit,OnDestroy
     this.activeRouter.paramMap.subscribe(
       (route)=>
       {
-      this.city=this.activeRouter.params.city;
+      /*this.city=this.activeRouter.params.city;
       this.sub1=this.weatherService.getWeatherState(this.city).subscribe((state:any)=>this.state=state);
       this.sub2=this.weatherService.getCurrentTemp(this.city).subscribe((temp:number)=>this.temp=temp);
       this.sub3 = this.weatherService.getCurrentHum(this.city).subscribe((humidity:number) => this.hum = humidity);
@@ -68,12 +69,15 @@ export class DetailsComponent implements OnInit,OnDestroy
         const date =new Date(data[i]).getDay();
         console.log(days[date]);
       }
-  });
+  });*/})
+}
+}
 
 
-  }
 
-  ngOnDestroy():void
+
+
+ /* ngOnDestroy():void
 {
 
   this.sub1
@@ -84,6 +88,6 @@ export class DetailsComponent implements OnInit,OnDestroy
   this.sub5.unsubscribe();
 
 
-}
-  }
+}*/
+
 
