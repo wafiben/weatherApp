@@ -7,12 +7,16 @@ import { DetailsComponent } from './details/details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { WeatherService } from './services/weather.service';
+import { HomeComponent } from './home/home.component';
+import { AddComponent } from './add/add.component';
 
 const routes: Routes = [{ path: 'DetailsComponent/:city', component: DetailsComponent }];
 @NgModule({
   declarations: [
     AppComponent,
-    DetailsComponent
+    DetailsComponent,
+    HomeComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,
