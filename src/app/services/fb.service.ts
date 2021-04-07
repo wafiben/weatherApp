@@ -1,6 +1,7 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import {AngularFireLiteAuth, AngularFireLiteFirestore} from 'angularfire-lite';
-import { Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
 import { interval } from 'rxjs';
 import { from, Subject } from 'rxjs';
 import { multicast } from 'rxjs/operators';
@@ -12,7 +13,7 @@ import {first, switchMap} from 'rxjs/operators';
 })
 export class FbService {
 
-
+A =new Observable<any>()
   constructor(private fs:AngularFireLiteFirestore,
     public auth:AngularFireLiteAuth)
     {}
@@ -26,7 +27,7 @@ export class FbService {
     }
     signUp(email:string,password:string)
     {
-      this.auth.signup(email,password);
+      return  this.auth.signup(email,password);
     }
     signOut()
     {
@@ -41,6 +42,7 @@ export class FbService {
   {
     return this.auth.uid().pipe(switchMap((uid) => {
       let a =this.fs.read('${uid}');
+      this.A=a;
       return this.fs.read('${uid}');
 
     }));
