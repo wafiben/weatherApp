@@ -1,6 +1,6 @@
+import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DetailsComponent } from './details/details.component';
@@ -11,8 +11,13 @@ import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-
-const routes: Routes = [{ path: 'DetailsComponent/:city', component: DetailsComponent }];
+import { AngularFireLite } from 'angularfire-lite';
+const routes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'details/:city', component: DetailsComponent},
+  {path: 'add', component: AddComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent},
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +31,8 @@ const routes: Routes = [{ path: 'DetailsComponent/:city', component: DetailsComp
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AngularFireLite.forRoot(environment.Config)
   ],
   providers: [WeatherService],
   bootstrap: [AppComponent]
