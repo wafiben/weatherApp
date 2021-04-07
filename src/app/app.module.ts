@@ -9,6 +9,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { WeatherService } from './services/weather.service';
 import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [{ path: 'DetailsComponent/:city', component: DetailsComponent }];
 @NgModule({
@@ -16,7 +18,9 @@ const routes: Routes = [{ path: 'DetailsComponent/:city', component: DetailsComp
     AppComponent,
     DetailsComponent,
     HomeComponent,
-    AddComponent
+    AddComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
