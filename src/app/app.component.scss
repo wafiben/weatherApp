@@ -60,7 +60,7 @@ transform: translateX(-103%);
   grid-template-columns: 1fr;
   grid-template-rows: 2fr 4fr 1fr;
   grid-gap: 1rem;
-  transition: transform linear 3s ;
+  transition: transform linear 300ms ;
   will-change: transform;
 }
 .slide-menu-active
