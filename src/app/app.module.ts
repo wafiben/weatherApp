@@ -1,3 +1,4 @@
+import { AuthGuardService } from './services/auth-guard.service';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,11 +15,12 @@ import { SignupComponent } from './signup/signup.component';
 import { AngularFireLite } from 'angularfire-lite';
 import { WeatherCardComponent } from './weather-card/weather-card.component';
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'details/:city', component: DetailsComponent},
-  {path: 'add', component: AddComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent}]
+  {path: '', component: HomeComponent,canActivate: [AuthGuardService]},
+  {path: 'details/:city', component: DetailsComponent,canActivate: [AuthGuardService]},
+  {path: 'add', component: AddComponent,canActivate: [AuthGuardService]},
+  {path: 'login', component: LoginComponent,canActivate: [AuthGuardService]},
+  {path: 'signup', component: SignupComponent,canActivate: [AuthGuardService]},
+  {path: '**', redirectTo: ''}];
 @NgModule({
   declarations: [
     AppComponent,
