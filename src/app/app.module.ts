@@ -12,6 +12,7 @@ import { AddComponent } from './add/add.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AngularFireLite } from 'angularfire-lite';
+import { WeatherCardComponent } from './weather-card/weather-card.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'details/:city', component: DetailsComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
     HomeComponent,
     AddComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    WeatherCardComponent
   ],
   imports: [
     BrowserModule,
