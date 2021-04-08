@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'details/:city', component: DetailsComponent},
   {path: 'add', component: AddComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
+  {path: 'signup', component: SignupComponent}]
 @NgModule({
   declarations: [
     AppComponent,
