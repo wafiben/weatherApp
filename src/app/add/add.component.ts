@@ -20,35 +20,76 @@ export class AddComponent implements OnInit,OnDestroy {
    Temperature: number=0;
   City = 'Rome';
   State: string='state'
-  capitals = [];
-  selectedCity;
-  cardCity;
+  capitals :any[]= [];
+  cardCity:string='cardCity';
   ShowNote :boolean = false;
   followedCM:boolean  = false;
   sub1=new Subscription();
 
   ngOnInit(): void
   {
-     this.weatherService.getWeather(this.city).subscribe(
+     this.weatherService.getWeather(this.City).subscribe(
        (value)=>
        {
        this.State=value.weather[0].main;
        this.Temperature=value.main.temp;
        })
-       this.http.get('https://restcountries.eu/rest/v2/all')
-       .pipe((first())).subscribe(
-         (countries:Array <>)=>
+       this.weatherService.getCountries().subscribe(
+         (counrtries)=>
          {
-            countries.forEach(country :any=> {
 
-            });
+           counrtries.forEach((country:any)=>
+           {
+            if(country.capital.length)
+            {
+              this.capitals.push(country.capital);
+            }
+           });
+           this.capitals.sort();
          })
+         this.sub1=this.fbService.getCities().subscribe(
+           (cities)=>
+           {
+            Object.values(cities).forEach(
+              (city:any)=>
+              {
+                if (city.name==="Rome")
+                {
+                  this.followedCM=true;
+                }
+              })
 
+           });
+
+
+
+  }
+  selectCity(city:string)
+  {
+    if(this.capitals.includes(city))
+    {
+    this.cardCity=city;
+    this.ShowNote=false;
+    }
+    else if (city.leading>0)
+    {
+      this.ShowNote = true;
+    }
+
+  }
+  addCityOfTheMonth()
+  {
+    this.fbService.addCity('Rome').subscribe(
+      ()=>
+      {
+        this.followedCM=true;
+      })
   }
 
 
   ngOnDestroy()
   {
+  this.sub1.unsubscribe();
 
   }
 
