@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AngularFireLite } from 'angularfire-lite';
 import { WeatherCardComponent } from './weather-card/weather-card.component';
+import {NguiAutoCompleteModule} from '@ngui/auto-complete'
 const routes: Routes = [
   {path: '', component: HomeComponent,canActivate: [AuthGuardService]},
   {path: 'details/:city', component: DetailsComponent,canActivate: [AuthGuardService]},
@@ -36,7 +37,8 @@ const routes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    AngularFireLite.forRoot(environment.Config)
+    AngularFireLite.forRoot(environment.Config),
+    NguiAutoCompleteModule
   ],
   providers: [WeatherService],
   bootstrap: [AppComponent]
